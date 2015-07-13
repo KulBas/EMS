@@ -1,7 +1,6 @@
-/**
- * Created by Павел07.2015.
- */
+//artem gey
 public class TestClass {
 public void testClass(){}
+
 }
 

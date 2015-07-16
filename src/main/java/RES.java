@@ -1,20 +1,57 @@
-/**
- * Created by Павел on 13.07.2015.
- */
+
 public class RES {
-    int x1, y1, x2, y2, f1, f2, currentDistance, currentFrequency;
 
-    RES(int x1, int y1, int x2, int y2, int f1, int f2) {
-        this.x1 = x1;
+    private int coordinateX;
+    private int coordinateY;
+    private double currentFrequency;
+    private double[] liters;
+    private int priority;
+
+    public RES(int coordinateX,int coordinateY,double currentFrequency, double[] liters,int priority){
+       this.coordinateX= coordinateX;
+       this.coordinateY= coordinateY;
+       this.currentFrequency=currentFrequency;
+       this.liters=liters;
+       this.priority=priority;
+    };
+
+    public int getCoordinateX() {
+        return coordinateX;
     }
 
-    public int countFrequency(int f1, int f2) {
-        currentFrequency = f1 - f2;
-        return Math.abs(currentFrequency);
+    public void setCoordinateX(int coordinateX) {
+        this.coordinateX = coordinateX;
     }
 
-    public int countDistance(int x1, int y1, int x2, int y2) {
-        currentDistance = 10;
-        return currentDistance;
+    public int getCoordinateY() {
+        return coordinateY;
+    }
+
+    public void setCoordinateY(int coordinateY) {
+        this.coordinateY = coordinateY;
+    }
+
+    public double getCurrentFrequency() {
+        return currentFrequency;
+    }
+
+    public void setCurrentFrequency(double currentFrequency) {
+        this.currentFrequency = currentFrequency;
+    }
+
+    public double[] getLiters() {
+        return liters;
+    }
+
+    public void setLiters(double[] liters) {
+        this.liters = liters;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }

@@ -8,17 +8,15 @@ public class Pair {
     private RES firstRes;
     private RES secondRes;
     private Map<Integer, Integer> linksRES = new HashMap<Integer, Integer>();
-    private List<Pair> pairsList = new ArrayList<Pair>();
+    private Double difFrequency;
+    private Double realDistance;
+    private Double criticalDistance;
 
-    public Pair() {
-    }
 
-    public void addNewPair(RES firstRes, RES secondRes) {
-        Pair pair = new Pair();
-        pair.setFirstRes(firstRes);
-        pair.setSecondRes(secondRes);
+    public Pair(RES firstRes, RES secondRes) {
+        this.firstRes = firstRes;
+        this.secondRes = secondRes;
         linksRES.put(firstRes.getId(), secondRes.getId());
-        pairsList.add(pair);
     }
 
     public RES getFirstRes() {
@@ -43,5 +41,29 @@ public class Pair {
 
     public void setLinksRES(Map<Integer, Integer> linksRES) {
         this.linksRES = linksRES;
+    }
+
+    public Double getDifFrequency() {
+        return difFrequency;
+    }
+
+    public void setDifFrequency(Double difFrequency) {
+        this.difFrequency = difFrequency;
+    }
+
+    public Double getRealDistance() {
+        return realDistance;
+    }
+
+    public void setRealDistance(Double realDistance) {
+        this.realDistance = realDistance;
+    }
+
+    public Double getCriticalDistance() {
+        return criticalDistance;
+    }
+
+    public void setCriticalDistance(Double criticalDistance) {
+        this.criticalDistance = criticalDistance;
     }
 }

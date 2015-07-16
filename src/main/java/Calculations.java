@@ -1,6 +1,17 @@
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Calculations {
+
+    private List<Pair> pairsList = new ArrayList<Pair>();
+
+    public void addNewPair(RES firstRes, RES secondRes){
+        Pair pair=new Pair(firstRes,secondRes);
+        pairsList.add(pair);
+    }
+    //TODO: сделать дальше расчет
+
+
 
     public double countDifFrequency(Pair pair) {
         double firstResFrequency = pair.getFirstRes().getCurrentFrequency();
@@ -19,11 +30,17 @@ public class Calculations {
         return realDistance;
     }
 
-    public double getCriticalDistance(Pair pair){
-
-
-
+  // TODO: write method for the CriticalDistance
+   public double getCriticalDistance(Pair pair){
         return 0;
     }
 
+
+    public List<Pair> getPairsList() {
+        return pairsList;
+    }
+
+    public void setPairsList(List<Pair> pairsList) {
+        this.pairsList = pairsList;
+    }
 }

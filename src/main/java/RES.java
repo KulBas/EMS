@@ -1,3 +1,4 @@
+import java.util.List;
 
 public class RES {
 
@@ -5,10 +6,10 @@ public class RES {
     private double coordinateX;
     private double coordinateY;
     private double currentFrequency;
-    private double[] liters;
+    private List<Double> liters;
     private int priority;
 
-    public RES(int id, int coordinateX, int coordinateY, double currentFrequency, double[] liters, int priority) {
+    public RES(int id, double coordinateX, double coordinateY, double currentFrequency, List<Double> liters, int priority) {
         this.id = id;
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
@@ -43,11 +44,11 @@ public class RES {
         this.currentFrequency = currentFrequency;
     }
 
-    public double[] getLiters() {
+    public List<Double> getLiters() {
         return liters;
     }
 
-    public void setLiters(double[] liters) {
+    public void setLiters(List<Double> liters) {
         this.liters = liters;
     }
 

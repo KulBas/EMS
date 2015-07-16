@@ -19,4 +19,11 @@ public class Calculations {
         return realDistance;
     }
 
+    public double getCriticalDistance(Pair pair){
+
+
+
+        return 0;
+    }
+
 }

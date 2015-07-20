@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class RES {
@@ -14,7 +15,7 @@ public class RES {
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
         this.currentFrequency = currentFrequency;
-        this.liters = liters;
+        this.liters = new ArrayList<Double>(liters);
         this.priority = priority;
     }
 

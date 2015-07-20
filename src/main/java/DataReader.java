@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class DataReader {
     private static List<RES> resList = new ArrayList<RES>();
-    private static List<Double> liters = new ArrayList<Double>();
+    private  List<Double> liters = new ArrayList<Double>();
 
     public void readFile(String pathToFile) {
         try {
@@ -22,6 +22,7 @@ public class DataReader {
                 curRes = line.split(";");
                 initializeLiters(curRes);
                 initializeResList(curRes);
+                liters.clear();
             }
 
         } catch (java.io.IOException e) {
@@ -33,6 +34,7 @@ public class DataReader {
         RES res = new RES(Integer.valueOf(curRes[0]), Double.valueOf(curRes[1]),
                 Double.valueOf(curRes[2]), Double.valueOf(curRes[3]), liters, Integer.valueOf(curRes[5]));
         resList.add(res);
+
     }
 
     private void initializeLiters(String[] curRes) {

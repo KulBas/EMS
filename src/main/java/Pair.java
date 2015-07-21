@@ -1,22 +1,23 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Pair {
 
     private RES firstRes;
     private RES secondRes;
-    private Map<Integer, Integer> linksRES = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> linkRES;
     private Double difFrequency;
     private Double realDistance;
     private Double criticalDistance;
+    private Double pairRating;
+    private LinkedHashMap<Double, Double> CHTR; //<criticalDistance(recommended),difFrequency(recommended)>
 
 
     public Pair(RES firstRes, RES secondRes) {
         this.firstRes = firstRes;
         this.secondRes = secondRes;
-        linksRES.put(firstRes.getId(), secondRes.getId());
+        linkRES.put(firstRes.getId(), secondRes.getId());
     }
 
     public RES getFirstRes() {
@@ -35,12 +36,12 @@ public class Pair {
         this.secondRes = secondRes;
     }
 
-    public Map<Integer, Integer> getLinksRES() {
-        return linksRES;
+    public Map<Integer, Integer> getLinkRES() {
+        return linkRES;
     }
 
-    public void setLinksRES(Map<Integer, Integer> linksRES) {
-        this.linksRES = linksRES;
+    public void setLinkRES(Map<Integer, Integer> linkRES) {
+        this.linkRES = linkRES;
     }
 
     public Double getDifFrequency() {
@@ -65,5 +66,21 @@ public class Pair {
 
     public void setCriticalDistance(Double criticalDistance) {
         this.criticalDistance = criticalDistance;
+    }
+
+    public Double getPairRating() {
+        return pairRating;
+    }
+
+    public void setPairRating(Double pairRating) {
+        this.pairRating = pairRating;
+    }
+
+    public LinkedHashMap<Double, Double> getCHTR() {
+        return CHTR;
+    }
+
+    public void setCHTR(LinkedHashMap<Double, Double> CHTR) {
+        this.CHTR = CHTR;
     }
 }

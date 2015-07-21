@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Павел on 13.07.2015.
- */
 public class DataReader {
     private static List<RES> resList = new ArrayList<RES>();
     private  List<Double> liters = new ArrayList<Double>();

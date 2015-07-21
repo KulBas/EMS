@@ -1,18 +1,16 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class Calculations {
 
-    private List<Pair> pairsList = new ArrayList<Pair>();
 
-    public void addNewPair(RES firstRes, RES secondRes){
-        Pair pair=new Pair(firstRes,secondRes);
-        pairsList.add(pair);
-    }
-    //TODO: сделать дальше расчет
-
-
-
+    /**
+     * Расчет разности частот РЭС
+     * @param pair Пара РЭС
+     * @return Разность частот
+     */
     public double countDifFrequency(Pair pair) {
         double firstResFrequency = pair.getFirstRes().getCurrentFrequency();
         double secondResFrequency = pair.getSecondRes().getCurrentFrequency();
@@ -20,27 +18,59 @@ public class Calculations {
         return resultFrequency;
     }
 
+    /**
+     * Расчет реальной дистанции для пары, по координатам двух РЭС
+     * @param pair Пара РЭС
+     * @return Реальная дистанция между РЭС
+     */
     public double countRealDistance(Pair pair) {
-        double firstX = pair.getFirstRes().getCoordinateX();
-        double secondX = pair.getSecondRes().getCoordinateX();
-        double firstY = pair.getFirstRes().getCoordinateY();
-        double secondY = pair.getSecondRes().getCoordinateY();
+        RES firstRES=pair.getFirstRes();
+        RES secondRES=pair.getSecondRes();
+        double firstX = firstRES.getCoordinateX();
+        double secondX = secondRES.getCoordinateX();
+        double firstY = firstRES.getCoordinateY();
+        double secondY = secondRES.getCoordinateY();
 
         double realDistance = Math.sqrt((Math.pow((firstX - secondX), 2)) + (Math.pow((firstY - secondY), 2)));
         return realDistance;
     }
 
-  // TODO: write method for the CriticalDistance
-   public double getCriticalDistance(Pair pair){
-        return 0;
+    /**
+     * Расчет критической дистанции для пары, по ЧТР и разности частот РЭС
+     * @param pair Пара РЭС
+     * @return Критическая дистанция
+     */
+   public double countCriticalDistance(Pair pair) {
+       LinkedHashMap<Double, Double> CHTR = pair.getCHTR();
+       Double difFrequency = pair.getDifFrequency();
+       Double criticalDistance=null;
+
+
+       for (int i = 0; i < CHTR.size(); i++) {
+           if (difFrequency > CHTR.get(i)) {
+               continue;
+           } else {
+               pair.setCriticalDistance(CHTR.get(i - 1));
+
+               criticalDistance=CHTR.get(i - 1);
+               pair.setCriticalDistance(criticalDistance);
+               return criticalDistance;
+           }
+
+       }
+       return criticalDistance;
+   }
+
+
+
+    /**
+     *  Вычисление рейтинга критичности для пары
+     * @param pair Пара РЭС
+     * @return рейтинг пары = Дреальная-Дкритическая;
+     */
+    public double countPairRating(Pair pair){
+      return pair.getRealDistance()-pair.getCriticalDistance();
     }
 
 
-    public List<Pair> getPairsList() {
-        return pairsList;
-    }
-
-    public void setPairsList(List<Pair> pairsList) {
-        this.pairsList = pairsList;
-    }
 }

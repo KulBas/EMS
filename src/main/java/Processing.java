@@ -37,7 +37,6 @@ public class Processing {
                 if (i < j) {
 
                     Pair pair = new Pair(resList.get(i), resList.get(j));
-                    pairsList.add(pair);
 
                     Calculations calc = new Calculations();
                     pair.setCriticalDistance(calc.countCriticalDistance(pair));
@@ -45,6 +44,7 @@ public class Processing {
                     pair.setRealDistance(calc.countRealDistance(pair));
                     pair.setPairRating(calc.countPairRating(pair));
                     pair.setCHTR(CTHR);
+                    pairsList.add(pair);
                 }
             }
         }

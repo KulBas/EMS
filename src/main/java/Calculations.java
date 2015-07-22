@@ -40,6 +40,7 @@ public class Calculations {
      * @param pair Пара РЭС
      * @return Критическая дистанция
      */
+    //TODO:исправить цикл
    public double countCriticalDistance(Pair pair) {
        LinkedHashMap<Double, Double> CHTR = pair.getCHTR();
        Double difFrequency = pair.getDifFrequency();
@@ -50,8 +51,6 @@ public class Calculations {
            if (difFrequency > CHTR.get(i)) {
                continue;
            } else {
-               pair.setCriticalDistance(CHTR.get(i - 1));
-
                criticalDistance=CHTR.get(i - 1);
                pair.setCriticalDistance(criticalDistance);
                return criticalDistance;

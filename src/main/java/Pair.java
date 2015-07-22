@@ -10,8 +10,8 @@ public class Pair {
     private Double difFrequency;
     private Double realDistance;
     private Double criticalDistance;
-    private Double pairRating;
-    private LinkedHashMap<Double, Double> CHTR; //<criticalDistance(recommended),difFrequency(recommended)>
+    private Double pairRating; //Реальная дальность - критическая
+    private LinkedHashMap<Double, Double> CHTR; //<difFrequency(recommended),criticalDistance(recommended)>
 
 
     public Pair(RES firstRes, RES secondRes) {

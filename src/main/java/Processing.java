@@ -27,6 +27,7 @@ public class Processing {
      * @param CTHR - <Рекоменд.Дальность,Разность частот РЭС>
      * @return список всех пар объектов
      */
+    //TODO: в setCHTR надо записывать конкретный чтр, а не общий
     public List<Pair> createAllPairs(List<RES> resList,LinkedHashMap<Double,Double> CTHR) {
         List<Pair> pairsList = new ArrayList<Pair>();
 

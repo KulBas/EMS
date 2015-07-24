@@ -40,7 +40,7 @@ public class Calculations {
      * @param pair Пара РЭС
      * @return Критическая дистанция
      */
-    //TODO:исправить цикл
+    //TODO:исправить цикл, в этом же методе надо записывать критическую дельта f для пары объектов
    public double countCriticalDistance(Pair pair) {
        LinkedHashMap<Double, Double> CHTR = pair.getCHTR();
        Double difFrequency = pair.getDifFrequency();
@@ -52,7 +52,6 @@ public class Calculations {
                continue;
            } else {
                criticalDistance=CHTR.get(i - 1);
-               pair.setCriticalDistance(criticalDistance);
                return criticalDistance;
            }
 

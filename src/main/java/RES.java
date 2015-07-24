@@ -19,7 +19,6 @@ public class RES {
         this.priority = priority;
     }
 
-    ;
 
     public double getCoordinateX() {
         return coordinateX;

@@ -82,7 +82,6 @@ public class Calculations {
     public void checkFreeFrequencies(Pair pair) {
         RES firstRes = pair.getFirstRes();
         RES secondRes = pair.getSecondRes();
-        List<Double> secondResLiters = secondRes.getLiters();
         Double deltaF;
        for(Double firstResLiters: firstRes.getLiters()){
            deltaF = Math.abs(firstResLiters - secondRes.getCurrentFrequency());
@@ -90,5 +89,11 @@ public class Calculations {
                firstRes.setNoConflictLiter(firstResLiters);
            }
        }
+        for(Double secondResLiters: secondRes.getLiters()){
+            deltaF = Math.abs(secondResLiters - firstRes.getCurrentFrequency());
+            if(deltaF > pair.getCriticalFrequency()){
+                secondRes.setNoConflictLiter(secondResLiters);
+            }
+        }
     }
 }

@@ -10,6 +10,17 @@ public class RES {
     private List<Double> liters;
     private int priority;
 
+    public Double getNoConflictLiter() {
+        return noConflictLiter;
+    }
+
+    public void setNoConflictLiter(Double noConflictLiter) {
+        this.noConflictLiter = noConflictLiter;
+    }
+
+    private Double noConflictLiter;//первая найденная не конфликтная литера для данного РЭС
+
+
     public RES(int id, double coordinateX, double coordinateY, double currentFrequency, List<Double> liters, int priority) {
         this.id = id;
         this.coordinateX = coordinateX;
@@ -18,7 +29,6 @@ public class RES {
         this.liters = new ArrayList<Double>(liters);
         this.priority = priority;
     }
-
 
     public double getCoordinateX() {
         return coordinateX;

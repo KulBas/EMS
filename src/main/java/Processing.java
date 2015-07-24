@@ -5,6 +5,11 @@ public class Processing {
     // TODO: дописать
     public void process(List<RES> resList,LinkedHashMap<Double,Double> CTHR) {
         List<Pair> pairsList = createAllPairs(resList,CTHR);
+        Calculations calc = new Calculations();
+        for (Pair pair : pairsList) {//для всех пар объектов находим не конфликтные литеры
+            calc.checkFreeFrequencies(pair);
+        }
+
         List<Pair> regularizedPairList = regularizePairsByRating(pairsList);
 
         for (Pair pair : regularizedPairList) {

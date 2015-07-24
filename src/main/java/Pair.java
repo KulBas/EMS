@@ -12,6 +12,14 @@ public class Pair {
     private Double criticalDistance;
     private Double pairRating; //Реальная дальность - критическая
     private LinkedHashMap<Double, Double> CHTR; //<difFrequency(recommended),criticalDistance(recommended)>
+    private  Double criticalFrequency;//минимальная дельта f для обеспечения неконфликтной ситуации
+    public Double getCriticalFrequency() {
+        return criticalFrequency;
+    }
+
+    public void setCriticalFrequency(Double criticalFrequency) {
+        this.criticalFrequency = criticalFrequency;
+    }
 
 
     public Pair(RES firstRes, RES secondRes) {
@@ -83,4 +91,6 @@ public class Pair {
     public void setCHTR(LinkedHashMap<Double, Double> CHTR) {
         this.CHTR = CHTR;
     }
+
+
 }

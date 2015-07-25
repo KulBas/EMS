@@ -43,7 +43,7 @@ public class DataReader {
 
     public static void main(String[] args) {
         DataReader dataReader = new DataReader();
-        dataReader.readFile("D:/emstest/test.txt");
+        dataReader.readFile("resources/test.txt");
         for (int i = 0; i < resList.size(); i++) {
             System.out.println("Id: " + resList.get(i).getId());
             System.out.println("X: " + resList.get(i).getCoordinateX() + " Y: " + resList.get(i).getCoordinateY());

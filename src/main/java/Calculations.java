@@ -1,7 +1,7 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import dao.CHTR.CHTR;
+import dao.CHTR.Point;
+import dao.Pair;
+import dao.RES.RES;
 
 public class Calculations {
 
@@ -41,25 +41,33 @@ public class Calculations {
      * Расчет критической дистанции для пары, по ЧТР и разности частот РЭС
      *
      * @param pair Пара РЭС
-     * @return Критическая дистанция
+     * @return  Point - критическая точка (крит.дальность,крит.частота)
      */
-    //TODO:исправить цикл, в этом же методе надо записывать критическую дельта f для пары объектов
-    public double countCriticalDistance(Pair pair) {
-        LinkedHashMap<Double, Double> CHTR = pair.getCHTR();
+    public Point countCriticalPoint(Pair pair) {
+        CHTR CHTR = pair.getCHTR();
         Double difFrequency = pair.getDifFrequency();
-        Double criticalDistance = null;
+        Double criticalDistance;
+        Point point=new Point();
 
+        for (int i = 0; i < CHTR.getPoints().size(); i++) {
 
-        for (int i = 0; i < CHTR.size(); i++) {
-            if (difFrequency > CHTR.get(i)) {
+            if (difFrequency > CHTR.getPoints().get(i).getCriticalDifFrequency()) {
                 continue;
             } else {
-                criticalDistance = CHTR.get(i - 1);
-                return criticalDistance;
+                if(i==0){
+                    criticalDistance = CHTR.getPoints().get(i).getCriticalDistance();
+                    point.setCriticalDistance(criticalDistance);
+                    point.setCriticalDifFrequency(CHTR.getPoints().get(i).getCriticalDifFrequency());
+                    return point;
+                }else
+                criticalDistance = CHTR.getPoints().get(i - 1).getCriticalDistance();
+                point.setCriticalDistance(criticalDistance);
+                point.setCriticalDifFrequency(CHTR.getPoints().get(i - 1).getCriticalDifFrequency());
+                return point;
             }
 
         }
-        return criticalDistance;
+        return point;
     }
 
 
@@ -77,21 +85,21 @@ public class Calculations {
      * Составление списка не конфликтных литер
      *
      * @param pair - пара объектов, для которой находим не конфликтные литеры, сначала
-     *               перебираем относительно первого объекта, потом относительно второго
+     *             перебираем относительно первого объекта, потом относительно второго
      */
     public void checkFreeFrequencies(Pair pair) {
         RES firstRes = pair.getFirstRes();
         RES secondRes = pair.getSecondRes();
         Double deltaF;
-       for(Double firstResLiters: firstRes.getLiters()){
-           deltaF = Math.abs(firstResLiters - secondRes.getCurrentFrequency());
-           if(deltaF > pair.getCriticalFrequency()){
-               firstRes.setNoConflictLiter(firstResLiters);
-           }
-       }
-        for(Double secondResLiters: secondRes.getLiters()){
+        for (Double firstResLiters : firstRes.getLiters()) {
+            deltaF = Math.abs(firstResLiters - secondRes.getCurrentFrequency());
+            if (deltaF > pair.getCriticalFrequency()) {
+                firstRes.setNoConflictLiter(firstResLiters);
+            }
+        }
+        for (Double secondResLiters : secondRes.getLiters()) {
             deltaF = Math.abs(secondResLiters - firstRes.getCurrentFrequency());
-            if(deltaF > pair.getCriticalFrequency()){
+            if (deltaF > pair.getCriticalFrequency()) {
                 secondRes.setNoConflictLiter(secondResLiters);
             }
         }

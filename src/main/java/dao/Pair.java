@@ -1,18 +1,20 @@
-import java.util.HashMap;
+package dao;
+
+import dao.CHTR.CHTR;
+import dao.RES.RES;
+
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class Pair {
 
     private RES firstRes;
     private RES secondRes;
-    private Map<Integer, Integer> linkRES;
     private Double difFrequency;
     private Double realDistance;
     private Double criticalDistance;
-    private Double pairRating; //Реальная дальность - критическая
-    private LinkedHashMap<Double, Double> CHTR; //<difFrequency(recommended),criticalDistance(recommended)>
-    private  Double criticalFrequency;//минимальная дельта f для обеспечения неконфликтной ситуации
+    private Double pairRating; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    private CHTR CHTR; //<difFrequency(recommended),criticalDistance(recommended)>
+    private  Double criticalFrequency;//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ f пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public Double getCriticalFrequency() {
         return criticalFrequency;
     }
@@ -25,7 +27,6 @@ public class Pair {
     public Pair(RES firstRes, RES secondRes) {
         this.firstRes = firstRes;
         this.secondRes = secondRes;
-        linkRES.put(firstRes.getId(), secondRes.getId());
     }
 
     public RES getFirstRes() {
@@ -42,14 +43,6 @@ public class Pair {
 
     public void setSecondRes(RES secondRes) {
         this.secondRes = secondRes;
-    }
-
-    public Map<Integer, Integer> getLinkRES() {
-        return linkRES;
-    }
-
-    public void setLinkRES(Map<Integer, Integer> linkRES) {
-        this.linkRES = linkRES;
     }
 
     public Double getDifFrequency() {
@@ -84,13 +77,12 @@ public class Pair {
         this.pairRating = pairRating;
     }
 
-    public LinkedHashMap<Double, Double> getCHTR() {
+    public CHTR getCHTR() {
         return CHTR;
     }
 
-    public void setCHTR(LinkedHashMap<Double, Double> CHTR) {
+
+    public void setCHTR(CHTR CHTR) {
         this.CHTR = CHTR;
     }
-
-
 }

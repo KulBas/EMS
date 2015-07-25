@@ -1,10 +1,15 @@
+import dao.CHTR.CHTR;
+import dao.CHTR.Point;
+import dao.Pair;
+import dao.RES.RES;
+
 import java.util.*;
 
 public class Processing {
 
     // TODO: дописать
-    public void process(List<RES> resList,LinkedHashMap<Double,Double> CTHR) {
-        List<Pair> pairsList = createAllPairs(resList,CTHR);
+    public void process(List<RES> resList, List<CHTR> chtrList) {
+        List<Pair> pairsList = createAllPairs(resList, chtrList);
         Calculations calc = new Calculations();
         for (Pair pair : pairsList) {//для всех пар объектов находим не конфликтные литеры
             calc.checkFreeFrequencies(pair);
@@ -28,12 +33,11 @@ public class Processing {
     /**
      * Создает в цикле все пары объектов по принципу "каждый с каждым"
      *
-     * @param resList - коллекция полученных объектов РЭС
-     * @param CTHR - <Рекоменд.Дальность,Разность частот РЭС>
+     * @param resList  - коллекция полученных объектов РЭС
+     * @param CTHRList - <Рекоменд.Дальность,Разность частот РЭС>
      * @return список всех пар объектов
      */
-    //TODO: в setCHTR надо записывать конкретный чтр, а не общий
-    public List<Pair> createAllPairs(List<RES> resList,LinkedHashMap<Double,Double> CTHR) {
+    public List<Pair> createAllPairs(List<RES> resList, List<CHTR> CTHRList) {
         List<Pair> pairsList = new ArrayList<Pair>();
 
         for (int i = 0; i < resList.size(); i++) {
@@ -41,19 +45,47 @@ public class Processing {
             for (int j = 0; j < resList.size(); j++) {
 
                 if (i < j) {
+                    RES firstRES = resList.get(i);
+                    RES secondRES = resList.get(j);
 
-                    Pair pair = new Pair(resList.get(i), resList.get(j));
+                    Pair pair = new Pair(firstRES, secondRES);
 
+                    for (CHTR chtr : CTHRList) {
+                        if (chtr.getFirstRESId()==firstRES.getId() && chtr.getSecondRESId()==secondRES.getId() ){
+                            pair.setCHTR(chtr);
+                        }
+                    }
                     Calculations calc = new Calculations();
-                    pair.setCriticalDistance(calc.countCriticalDistance(pair));
+
                     pair.setDifFrequency(calc.countDifFrequency(pair));
                     pair.setRealDistance(calc.countRealDistance(pair));
+
+                    Point criticalPoint=calc.countCriticalPoint(pair);
+                    pair.setCriticalDistance(criticalPoint.getCriticalDistance());
+                    pair.setCriticalFrequency(criticalPoint.getCriticalDifFrequency());
                     pair.setPairRating(calc.countPairRating(pair));
-                    pair.setCHTR(CTHR);
+
+
                     pairsList.add(pair);
                 }
             }
         }
+
+//       Посмотреть список созданных пар, и данные к ним
+
+//        System.out.println("\n CREATED "+pairsList.size()+" PAIRs"+"\n");
+//        for (Pair pair:pairsList){
+
+//            System.out.println("---------------------NEW PAIR----------------");
+//            System.out.println("First RES id: "+pair.getFirstRes().getId());
+//            System.out.println("SEC RES id: " + pair.getSecondRes().getId());
+//            System.out.println("CRITICAL DISTANCE: "+pair.getCriticalDistance());
+//            System.out.println("CRITICAL FREQUENCY: "+pair.getCriticalFrequency());
+//            System.out.println("difFrequency "+ pair.getDifFrequency());
+//            System.out.println("REAL DISTANCE: "+pair.getRealDistance());
+//            System.out.println("PAIR RATING: "+pair.getPairRating());
+//            System.out.println("CHTR IDs: "+pair.getCHTR().getFirstRESId()+"-"+pair.getCHTR().getSecondRESId());
+//        }
 
         return pairsList;
     }

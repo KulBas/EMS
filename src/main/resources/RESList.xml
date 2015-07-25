@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<RESList>
+
+    <RES id="1">
+        <coordinateX>12.0</coordinateX>
+        <coordinateY>24.3</coordinateY>
+        <currentFrequency>30.0</currentFrequency>
+        <Liters>
+            <liter>31.0</liter>
+        </Liters>
+        <priority>5</priority>
+    </RES>
+
+    <RES id="2">
+        <coordinateX>43.9</coordinateX>
+        <coordinateY>53.7</coordinateY>
+        <currentFrequency>15.0</currentFrequency>
+        <Liters>
+            <liter>17.2</liter>
+            <liter>16.2</liter>
+            <liter>19.7</liter>
+        </Liters>
+        <priority>2</priority>
+    </RES>
+
+    <RES id="3">
+        <coordinateX>57.4</coordinateX>
+        <coordinateY>63.6</coordinateY>
+        <currentFrequency>70.0</currentFrequency>
+        <Liters>
+            <liter>71.2</liter>
+            <liter>17.8</liter>
+        </Liters>
+        <priority>9</priority>
+    </RES>
+
+</RESList>

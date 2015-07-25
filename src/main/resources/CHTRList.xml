@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<CHTRList>
+
+    <CHTR id="1">
+        <firstRESId>1</firstRESId>
+        <secondRESId>2</secondRESId>
+        <points>
+            <Point>
+                <criticalDistance>15135.8</criticalDistance>
+                <criticalDifFrequency>2112.0</criticalDifFrequency>
+            </Point>
+            <Point>
+                <criticalDistance>13141.4</criticalDistance>
+                <criticalDifFrequency>221.0</criticalDifFrequency>
+            </Point>
+            <Point>
+                <criticalDistance>143173.8</criticalDistance>
+                <criticalDifFrequency>2311.0</criticalDifFrequency>
+            </Point>
+            <Point>
+                <criticalDistance>1143127.8</criticalDistance>
+                <criticalDifFrequency>3131.0</criticalDifFrequency>
+            </Point>
+        </points>
+    </CHTR>
+
+    <CHTR id="2">
+        <firstRESId>1</firstRESId>
+        <secondRESId>3</secondRESId>
+        <points>
+            <Point>
+                <criticalDistance>1341317.8</criticalDistance>
+                <criticalDifFrequency>312.0</criticalDifFrequency>
+            </Point>
+            <Point>
+                <criticalDistance>4134.8</criticalDistance>
+                <criticalDifFrequency>542.0</criticalDifFrequency>
+            </Point>
+            <Point>
+                <criticalDistance>11417.8</criticalDistance>
+                <criticalDifFrequency>141.0</criticalDifFrequency>
+            </Point>
+            <Point>
+                <criticalDistance>13147.8</criticalDistance>
+                <criticalDifFrequency>421.0</criticalDifFrequency>
+            </Point>
+            <Point>
+                <criticalDistance>1321147.8</criticalDistance>
+                <criticalDifFrequency>42121.0</criticalDifFrequency>
+            </Point>
+        </points>
+    </CHTR>
+
+    <CHTR id="3">
+        <firstRESId>2</firstRESId>
+        <secondRESId>3</secondRESId>
+        <points>
+            <Point>
+                <criticalDistance>15135.8</criticalDistance>
+                <criticalDifFrequency>2112.0</criticalDifFrequency>
+            </Point>
+            <Point>
+                <criticalDistance>13141.4</criticalDistance>
+                <criticalDifFrequency>221.0</criticalDifFrequency>
+            </Point>
+            <Point>
+                <criticalDistance>143173.8</criticalDistance>
+                <criticalDifFrequency>2311.0</criticalDifFrequency>
+            </Point>
+            <Point>
+                <criticalDistance>1143127.8</criticalDistance>
+                <criticalDifFrequency>3131.0</criticalDifFrequency>
+            </Point>
+        </points>
+    </CHTR>
+
+
+
+
+</CHTRList>

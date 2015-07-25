@@ -1,3 +1,6 @@
+package dao.RES;
+
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +21,9 @@ public class RES {
         this.noConflictLiter = noConflictLiter;
     }
 
-    private Double noConflictLiter;//первая найденная не конфликтная литера для данного РЭС
+    private Double noConflictLiter;//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+
+    public RES(){}
 
 
     public RES(int id, double coordinateX, double coordinateY, double currentFrequency, List<Double> liters, int priority) {
@@ -34,7 +39,8 @@ public class RES {
         return coordinateX;
     }
 
-    public void setCoordinateX(int coordinateX) {
+    @XmlElement (name = "coordinateX")
+    public void setCoordinateX(double coordinateX) {
         this.coordinateX = coordinateX;
     }
 
@@ -42,7 +48,8 @@ public class RES {
         return coordinateY;
     }
 
-    public void setCoordinateY(int coordinateY) {
+    @XmlElement (name = "coordinateY")
+    public void setCoordinateY(double coordinateY) {
         this.coordinateY = coordinateY;
     }
 
@@ -50,6 +57,7 @@ public class RES {
         return currentFrequency;
     }
 
+    @XmlElement (name = "currentFrequency")
     public void setCurrentFrequency(double currentFrequency) {
         this.currentFrequency = currentFrequency;
     }
@@ -58,6 +66,8 @@ public class RES {
         return liters;
     }
 
+    @XmlElementWrapper(name="Liters")
+    @XmlElement(name="liter")
     public void setLiters(List<Double> liters) {
         this.liters = liters;
     }
@@ -66,6 +76,7 @@ public class RES {
         return priority;
     }
 
+    @XmlElement (name = "priority")
     public void setPriority(int priority) {
         this.priority = priority;
     }
@@ -74,6 +85,7 @@ public class RES {
         return id;
     }
 
+    @XmlAttribute (name = "id")
     public void setId(int id) {
         this.id = id;
     }

@@ -19,13 +19,13 @@ public class DataReader {
     private List<Double> liters = new ArrayList<Double>();
 
     public RESList readRESList() {
-        RESList resList=null;
+        RESList resList = null;
         try {
 
             JAXBContext jaxbContext = JAXBContext.newInstance(RESList.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-           resList = (RESList) jaxbUnmarshaller.unmarshal(new File("D:/1-project/EMS/src/main/resources/RESList.xml"));
+            resList = (RESList) jaxbUnmarshaller.unmarshal(new File("D:/1-project/EMS/src/main/resources/RESList.xml"));
 //            Вывод полученных данных:
 //            for (RES res : resList.getRESList()) {
 //                System.out.println("-----------------NEW RES-------------");
@@ -45,7 +45,7 @@ public class DataReader {
 
 
     public CHTRList readCHTRList() {
-        CHTRList chtrList=null;
+        CHTRList chtrList = null;
         try {
 
             JAXBContext jaxbContext2 = JAXBContext.newInstance(CHTRList.class);
@@ -107,12 +107,18 @@ public class DataReader {
 
     public static void main(String[] args) {
         DataReader dataReader = new DataReader();
-        List<CHTR> chtrList=dataReader.readCHTRList().getCHTRList();
-        List<RES> resList=dataReader.readRESList().getRESList();
+        List<CHTR> chtrList = dataReader.readCHTRList().getCHTRList();
+        List<RES> resList = dataReader.readRESList().getRESList();
 
 
-        Processing processing=new Processing();
+        Processing processing = new Processing();
         List<Pair> pairsList = processing.createAllPairs(resList, chtrList);
+        processing.regularizePairsByRating(pairsList);
+
+        //проверка сортировки
+        for (Pair pair : pairsList) {
+            System.out.println(pair+" Rating: "+pair.getPairRating());
+        }
 
 //        вывод(из файла)
 //        for (int i = 0; i < resList.size(); i++) {
@@ -125,9 +131,6 @@ public class DataReader {
 //            }
 //            System.out.println("\n");
 //        }
-
-
-
 
 
     }

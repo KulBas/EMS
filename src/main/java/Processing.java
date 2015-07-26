@@ -73,19 +73,19 @@ public class Processing {
 
 //       Посмотреть список созданных пар, и данные к ним
 
-//        System.out.println("\n CREATED "+pairsList.size()+" PAIRs"+"\n");
-//        for (Pair pair:pairsList){
+        System.out.println("\n CREATED "+pairsList.size()+" PAIRs"+"\n");
+        for (Pair pair:pairsList){
 
-//            System.out.println("---------------------NEW PAIR----------------");
-//            System.out.println("First RES id: "+pair.getFirstRes().getId());
-//            System.out.println("SEC RES id: " + pair.getSecondRes().getId());
-//            System.out.println("CRITICAL DISTANCE: "+pair.getCriticalDistance());
-//            System.out.println("CRITICAL FREQUENCY: "+pair.getCriticalFrequency());
-//            System.out.println("difFrequency "+ pair.getDifFrequency());
-//            System.out.println("REAL DISTANCE: "+pair.getRealDistance());
-//            System.out.println("PAIR RATING: "+pair.getPairRating());
-//            System.out.println("CHTR IDs: "+pair.getCHTR().getFirstRESId()+"-"+pair.getCHTR().getSecondRESId());
-//        }
+            System.out.println("---------------------NEW PAIR----------------");
+            System.out.println("First RES id: "+pair.getFirstRes().getId());
+            System.out.println("SEC RES id: " + pair.getSecondRes().getId());
+            System.out.println("CRITICAL DISTANCE: "+pair.getCriticalDistance());
+            System.out.println("CRITICAL FREQUENCY: "+pair.getCriticalFrequency());
+            System.out.println("difFrequency "+ pair.getDifFrequency());
+            System.out.println("REAL DISTANCE: "+pair.getRealDistance());
+            System.out.println("PAIR RATING: "+pair.getPairRating());
+            System.out.println("CHTR IDs: "+pair.getCHTR().getFirstRESId()+"-"+pair.getCHTR().getSecondRESId());
+        }
 
         return pairsList;
     }

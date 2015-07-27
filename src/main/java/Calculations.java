@@ -98,13 +98,15 @@ public class Calculations {
 //            System.out.println("Делта f меду литерами "+firstResLiters+", "+secondRes.getCurrentFrequency()+" : "+deltaF);
             if (deltaF < pair.getCriticalFrequency()) {
                 pair.setFirstNoConflictLiter(firstResLiter);
+                System.out.println("Для РЭС"+firstRes.getId()+" найдена свободная не конфликтная литера "+pair.getFirstNoConflictLiter());
                 break;
             }
         }
         for (Double secondResLiter : secondRes.getLiters()) {
             deltaF = Math.abs(secondResLiter - firstRes.getCurrentFrequency());
             if (deltaF < pair.getCriticalFrequency()) {
-                pair.setFirstNoConflictLiter(secondResLiter);
+                pair.setSecondNoConflictLiter(secondResLiter);
+                System.out.println("Для РЭС" + secondRes.getId() + " найдена свободная не конфликтная литера " + pair.getSecondNoConflictLiter());
                 break;
             }
         }

@@ -8,8 +8,7 @@ import java.util.*;
 public class Processing {
 
     // TODO: дописать
-    public void process(List<RES> resList, List<CHTR> chtrList) {
-        List<Pair> pairsList = createAllPairs(resList, chtrList);
+    public void process(List<Pair> pairsList) {
         Calculations calc = new Calculations();
 //        for (Pair pair : pairsList) {//для всех пар объектов находим не конфликтные литеры
 //            calc.checkFreeFrequencies(pair);
@@ -17,38 +16,48 @@ public class Processing {
         List<Pair> regularizedPairList = regularizePairsByRating(pairsList);
 
         for (Pair pair : regularizedPairList) {
-           RES firstRes = pair.getFirstRes();
+
+            RES firstRes = pair.getFirstRes();
             RES secondRes = pair.getSecondRes();
             if (pair.getPairRating() <= 0) {
                 //Возможно перестроение по частоте? и т.д.
+                System.out.println("Проверяется конфликтная пара " + firstRes.getId() + " и " + secondRes.getId());
                 calc.checkFreeFrequencies(pair);
-                if(firstRes.getPriority() > secondRes.getPriority()){
-                    if (pair.getFirstNoConflictLiter() != null){
-                        changeCurrentFrequency(pair,firstRes);
+                boolean change = false;
+                Double firstNoConflictLiter = pair.getFirstNoConflictLiter();
+                Double secondNoConflictLiter = pair.getSecondNoConflictLiter();
+                if (firstRes.getPriority() >= secondRes.getPriority()) {
+                    change = changeCurrentFrequency(pair, firstRes,firstNoConflictLiter);
+                    if (!change) {
+                        change = changeCurrentFrequency(pair, secondRes,secondNoConflictLiter);
                     }
-                    else{
-                        System.out.println("Для РЭС " + firstRes.getId()+" нет свободной не конфликтной литеры, необходимо перестроение по дальности или мощности");
-                    }
-                }else{
-                    if(pair.getSecondNoConflictLiter() != null){
-                        changeCurrentFrequency(pair,secondRes);
-                    }else{
-                        System.out.println("Для РЭС " + firstRes.getId() + " нет свободной не конфликтной литеры, необходимо перестроение по дальности или мощности");
+                } else if (secondRes.getPriority() > firstRes.getPriority()) {
+                     change = changeCurrentFrequency(pair, secondRes,secondNoConflictLiter);
+                    if (!change) {
+                        change = changeCurrentFrequency(pair, firstRes,firstNoConflictLiter);
                     }
                 }
-
+                if(!change){
+                    System.out.println("Для пары РЭС " +firstRes.getId()+" и "+secondRes.getId()+" невозможна отстройка по частоте, необходима перестройка помощности или дальности"+"\n");
+                }
             } else {
-                System.out.println("Пары РЭС "+firstRes.getId()+" и "+secondRes.getId()+" не конфликтуют");
+                System.out.println("Пары РЭС " + firstRes.getId() + " и " + secondRes.getId() + " не конфликтуют"+"\n");
             }
         }
 
 
     }
 
-    public void changeCurrentFrequency(Pair pair, RES res){
-        Double currentFrequency = res.getCurrentFrequency();
-        res.setCurrentFrequency(pair.getFirstNoConflictLiter());
-        System.out.println("Для РЭС " + res.getId()+" произведена перестройка по частоте c "+currentFrequency + " на "+res.getCurrentFrequency());
+    public boolean changeCurrentFrequency(Pair pair, RES res,Double liter) {
+        if (liter != null) {
+            Double currentFrequency = res.getCurrentFrequency();
+            res.setCurrentFrequency(liter);
+            System.out.println("Для РЭС " + res.getId() + " произведена перестройка по частоте c " + currentFrequency + " на " + res.getCurrentFrequency()+"\n");
+            return true;
+        } else {
+            System.out.println("Для РЭС " + res.getId() + " нет свободной не конфликтной литеры");
+            return false;
+        }
     }
 
     /**
@@ -72,7 +81,7 @@ public class Processing {
                     Pair pair = new Pair(firstRES, secondRES);
 
                     for (CHTR chtr : CTHRList) {
-                        if (chtr.getFirstRESId()==firstRES.getId() && chtr.getSecondRESId()==secondRES.getId() ){
+                        if (chtr.getFirstRESId() == firstRES.getId() && chtr.getSecondRESId() == secondRES.getId()) {
                             pair.setCHTR(chtr);
                         }
                     }
@@ -81,7 +90,7 @@ public class Processing {
                     pair.setDifFrequency(calc.countDifFrequency(pair));
                     pair.setRealDistance(calc.countRealDistance(pair));
 
-                    Point criticalPoint=calc.countCriticalPoint(pair);
+                    Point criticalPoint = calc.countCriticalPoint(pair);
                     pair.setCriticalDistance(criticalPoint.getCriticalDistance());
                     pair.setCriticalFrequency(criticalPoint.getCriticalDifFrequency());
                     pair.setPairRating(calc.countPairRating(pair));
@@ -94,18 +103,18 @@ public class Processing {
 
 //       Посмотреть список созданных пар, и данные к ним
 
-        System.out.println("\n CREATED "+pairsList.size()+" PAIRs"+"\n");
-        for (Pair pair:pairsList){
+        System.out.println("\n CREATED " + pairsList.size() + " PAIRs" + "\n");
+        for (Pair pair : pairsList) {
 
             System.out.println("---------------------NEW PAIR----------------");
-            System.out.println("First RES id: "+pair.getFirstRes().getId());
+            System.out.println("First RES id: " + pair.getFirstRes().getId());
             System.out.println("SEC RES id: " + pair.getSecondRes().getId());
-            System.out.println("CRITICAL DISTANCE: "+pair.getCriticalDistance());
-            System.out.println("CRITICAL FREQUENCY: "+pair.getCriticalFrequency());
-            System.out.println("difFrequency "+ pair.getDifFrequency());
-            System.out.println("REAL DISTANCE: "+pair.getRealDistance());
-            System.out.println("PAIR RATING: "+pair.getPairRating());
-            System.out.println("CHTR IDs: "+pair.getCHTR().getFirstRESId()+"-"+pair.getCHTR().getSecondRESId());
+            System.out.println("CRITICAL DISTANCE: " + pair.getCriticalDistance());
+            System.out.println("CRITICAL FREQUENCY: " + pair.getCriticalFrequency());
+            System.out.println("difFrequency " + pair.getDifFrequency());
+            System.out.println("REAL DISTANCE: " + pair.getRealDistance());
+            System.out.println("PAIR RATING: " + pair.getPairRating());
+            System.out.println("CHTR IDs: " + pair.getCHTR().getFirstRESId() + "-" + pair.getCHTR().getSecondRESId() + "\n");
         }
 
         return pairsList;

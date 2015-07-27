@@ -83,8 +83,7 @@ public class DataReader {
 
         Processing processing = new Processing();
         List<Pair> pairsList = processing.createAllPairs(resList, chtrList);
-        processing.regularizePairsByRating(pairsList);
-        processing.process(resList,chtrList);
+        processing.process(pairsList);
 
         //проверка сортировки и не конфликтных литер
 //        for (Pair pair : pairsList) {

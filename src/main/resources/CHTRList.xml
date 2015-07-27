@@ -7,20 +7,20 @@
         <secondRESId>2</secondRESId>
         <points>
             <Point>
-                <criticalDistance>15135.8</criticalDistance>
-                <criticalDifFrequency>2112.0</criticalDifFrequency>
+                <criticalDistance>60.0</criticalDistance>
+                <criticalDifFrequency>0.0</criticalDifFrequency>
             </Point>
             <Point>
-                <criticalDistance>13141.4</criticalDistance>
-                <criticalDifFrequency>221.0</criticalDifFrequency>
+                <criticalDistance>50.0</criticalDistance>
+                <criticalDifFrequency>10.0</criticalDifFrequency>
             </Point>
             <Point>
-                <criticalDistance>143173.8</criticalDistance>
-                <criticalDifFrequency>2311.0</criticalDifFrequency>
+                <criticalDistance>40.0</criticalDistance>
+                <criticalDifFrequency>20.0</criticalDifFrequency>
             </Point>
             <Point>
-                <criticalDistance>1143127.8</criticalDistance>
-                <criticalDifFrequency>3131.0</criticalDifFrequency>
+                <criticalDistance>20.0</criticalDistance>
+                <criticalDifFrequency>45.0</criticalDifFrequency>
             </Point>
         </points>
     </CHTR>
@@ -30,24 +30,24 @@
         <secondRESId>3</secondRESId>
         <points>
             <Point>
-                <criticalDistance>1341317.8</criticalDistance>
-                <criticalDifFrequency>312.0</criticalDifFrequency>
+                <criticalDistance>60.0</criticalDistance>
+                <criticalDifFrequency>0.0</criticalDifFrequency>
             </Point>
             <Point>
-                <criticalDistance>4134.8</criticalDistance>
-                <criticalDifFrequency>542.0</criticalDifFrequency>
+                <criticalDistance>50.0</criticalDistance>
+                <criticalDifFrequency>10.0</criticalDifFrequency>
             </Point>
             <Point>
-                <criticalDistance>11417.8</criticalDistance>
-                <criticalDifFrequency>141.0</criticalDifFrequency>
+                <criticalDistance>40.0</criticalDistance>
+                <criticalDifFrequency>20.0</criticalDifFrequency>
             </Point>
             <Point>
-                <criticalDistance>13147.8</criticalDistance>
-                <criticalDifFrequency>421.0</criticalDifFrequency>
+                <criticalDistance>30.0</criticalDistance>
+                <criticalDifFrequency>30.0</criticalDifFrequency>
             </Point>
             <Point>
-                <criticalDistance>1321147.8</criticalDistance>
-                <criticalDifFrequency>42121.0</criticalDifFrequency>
+                <criticalDistance>20.0</criticalDistance>
+                <criticalDifFrequency>45.0</criticalDifFrequency>
             </Point>
         </points>
     </CHTR>
@@ -57,20 +57,24 @@
         <secondRESId>3</secondRESId>
         <points>
             <Point>
-                <criticalDistance>15135.8</criticalDistance>
-                <criticalDifFrequency>2112.0</criticalDifFrequency>
+                <criticalDistance>65.0</criticalDistance>
+                <criticalDifFrequency>0.0</criticalDifFrequency>
             </Point>
             <Point>
-                <criticalDistance>13141.4</criticalDistance>
-                <criticalDifFrequency>221.0</criticalDifFrequency>
+                <criticalDistance>55.0</criticalDistance>
+                <criticalDifFrequency>15.0</criticalDifFrequency>
             </Point>
             <Point>
-                <criticalDistance>143173.8</criticalDistance>
-                <criticalDifFrequency>2311.0</criticalDifFrequency>
+                <criticalDistance>40.0</criticalDistance>
+                <criticalDifFrequency>20.0</criticalDifFrequency>
             </Point>
             <Point>
-                <criticalDistance>1143127.8</criticalDistance>
-                <criticalDifFrequency>3131.0</criticalDifFrequency>
+                <criticalDistance>30.0</criticalDistance>
+                <criticalDifFrequency>35.0</criticalDifFrequency>
+            </Point>
+            <Point>
+                <criticalDistance>15.0</criticalDistance>
+                <criticalDifFrequency>55.0</criticalDifFrequency>
             </Point>
         </points>
     </CHTR>

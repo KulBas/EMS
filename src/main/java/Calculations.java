@@ -91,16 +91,21 @@ public class Calculations {
         RES firstRes = pair.getFirstRes();
         RES secondRes = pair.getSecondRes();
         Double deltaF;
-        for (Double firstResLiters : firstRes.getLiters()) {
-            deltaF = Math.abs(firstResLiters - secondRes.getCurrentFrequency());
-            if (deltaF > pair.getCriticalFrequency()) {
-                firstRes.setNoConflictLiter(firstResLiters);
+        for (Double firstResLiter : firstRes.getLiters()) {
+            deltaF = Math.abs(firstResLiter - secondRes.getCurrentFrequency());
+//            System.out.println("/////////////////////////////////////////");
+//            System.out.println("Критическая частота для пары "+firstRes.getId()+", "+secondRes.getId()+" : "+pair.getCriticalFrequency());
+//            System.out.println("Делта f меду литерами "+firstResLiters+", "+secondRes.getCurrentFrequency()+" : "+deltaF);
+            if (deltaF < pair.getCriticalFrequency()) {
+                pair.setFirstNoConflictLiter(firstResLiter);
+                break;
             }
         }
-        for (Double secondResLiters : secondRes.getLiters()) {
-            deltaF = Math.abs(secondResLiters - firstRes.getCurrentFrequency());
-            if (deltaF > pair.getCriticalFrequency()) {
-                secondRes.setNoConflictLiter(secondResLiters);
+        for (Double secondResLiter : secondRes.getLiters()) {
+            deltaF = Math.abs(secondResLiter - firstRes.getCurrentFrequency());
+            if (deltaF < pair.getCriticalFrequency()) {
+                pair.setFirstNoConflictLiter(secondResLiter);
+                break;
             }
         }
     }

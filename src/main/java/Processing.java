@@ -11,23 +11,44 @@ public class Processing {
     public void process(List<RES> resList, List<CHTR> chtrList) {
         List<Pair> pairsList = createAllPairs(resList, chtrList);
         Calculations calc = new Calculations();
-        for (Pair pair : pairsList) {//для всех пар объектов находим не конфликтные литеры
-            calc.checkFreeFrequencies(pair);
-        }
-
+//        for (Pair pair : pairsList) {//для всех пар объектов находим не конфликтные литеры
+//            calc.checkFreeFrequencies(pair);
+//        }
         List<Pair> regularizedPairList = regularizePairsByRating(pairsList);
 
         for (Pair pair : regularizedPairList) {
+           RES firstRes = pair.getFirstRes();
+            RES secondRes = pair.getSecondRes();
             if (pair.getPairRating() <= 0) {
                 //Возможно перестроение по частоте? и т.д.
+                calc.checkFreeFrequencies(pair);
+                if(firstRes.getPriority() > secondRes.getPriority()){
+                    if (pair.getFirstNoConflictLiter() != null){
+                        changeCurrentFrequency(pair,firstRes);
+                    }
+                    else{
+                        System.out.println("Для РЭС " + firstRes.getId()+" нет свободной не конфликтной литеры, необходимо перестроение по дальности или мощности");
+                    }
+                }else{
+                    if(pair.getSecondNoConflictLiter() != null){
+                        changeCurrentFrequency(pair,secondRes);
+                    }else{
+                        System.out.println("Для РЭС " + firstRes.getId() + " нет свободной не конфликтной литеры, необходимо перестроение по дальности или мощности");
+                    }
+                }
 
             } else {
-                // Если не критично:
-                //Скорость сближения равна нулю? т.д.
+                System.out.println("Пары РЭС "+firstRes.getId()+" и "+secondRes.getId()+" не конфликтуют");
             }
         }
 
 
+    }
+
+    public void changeCurrentFrequency(Pair pair, RES res){
+        Double currentFrequency = res.getCurrentFrequency();
+        res.setCurrentFrequency(pair.getFirstNoConflictLiter());
+        System.out.println("Для РЭС " + res.getId()+" произведена перестройка по частоте c "+currentFrequency + " на "+res.getCurrentFrequency());
     }
 
     /**

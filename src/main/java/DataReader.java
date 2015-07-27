@@ -25,7 +25,7 @@ public class DataReader {
             JAXBContext jaxbContext = JAXBContext.newInstance(RESList.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            resList = (RESList) jaxbUnmarshaller.unmarshal(new File("D:/1-project/EMS/src/main/resources/RESList.xml"));
+            resList = (RESList) jaxbUnmarshaller.unmarshal(new File("src/main/resources/RESList.xml"));
 //            Вывод полученных данных:
 //            for (RES res : resList.getRESList()) {
 //                System.out.println("-----------------NEW RES-------------");
@@ -50,7 +50,7 @@ public class DataReader {
 
             JAXBContext jaxbContext2 = JAXBContext.newInstance(CHTRList.class);
             Unmarshaller jaxbUnmarshaller2 = jaxbContext2.createUnmarshaller();
-            chtrList = (CHTRList) jaxbUnmarshaller2.unmarshal(new File("D:/1-project/EMS/src/main/resources/CHTRList.xml"));
+            chtrList = (CHTRList) jaxbUnmarshaller2.unmarshal(new File("src/main/resources/CHTRList.xml"));
 //            Вывод полученных данных:
 //            for (CHTR chtr : chtrList.getCHTRList()) {
 //                List<Point> points = chtr.getPoints();
@@ -73,40 +73,10 @@ public class DataReader {
         return chtrList;
     }
 
-    public void readFile(String pathToFile) {
-        try {
-
-            BufferedReader reader = new BufferedReader(new FileReader(pathToFile));
-            String line;
-            String[] curRes;
-            while ((line = reader.readLine()) != null) {
-                curRes = line.split(";");
-                initializeLiters(curRes);
-                initializeResList(curRes);
-                liters.clear();
-            }
-
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void initializeResList(String[] curRes) {
-        RES res = new RES(Integer.valueOf(curRes[0]), Double.valueOf(curRes[1]),
-                Double.valueOf(curRes[2]), Double.valueOf(curRes[3]), liters, Integer.valueOf(curRes[5]));
-        resList.add(res);
-
-    }
-
-    private void initializeLiters(String[] curRes) {
-        String[] strLiters = curRes[4].split(",");
-        for (int i = 0; i < strLiters.length; i++) {
-            liters.add(i, Double.valueOf(strLiters[i]));
-        }
-    }
 
     public static void main(String[] args) {
         DataReader dataReader = new DataReader();
+        Calculations calc = new Calculations();
         List<CHTR> chtrList = dataReader.readCHTRList().getCHTRList();
         List<RES> resList = dataReader.readRESList().getRESList();
 
@@ -114,24 +84,14 @@ public class DataReader {
         Processing processing = new Processing();
         List<Pair> pairsList = processing.createAllPairs(resList, chtrList);
         processing.regularizePairsByRating(pairsList);
+        processing.process(resList,chtrList);
 
-        //проверка сортировки
-        for (Pair pair : pairsList) {
-            System.out.println(pair+" Rating: "+pair.getPairRating());
-        }
-
-//        вывод(из файла)
-//        for (int i = 0; i < resList.size(); i++) {
-//            System.out.println("Id: " + resList.get(i).getId());
-//            System.out.println("X: " + resList.get(i).getCoordinateX() + " Y: " + resList.get(i).getCoordinateY());
-//            System.out.println("Frequency: " + resList.get(i).getCurrentFrequency() + " Priority: " + resList.get(i).getPriority());
-//            System.out.print("Liters: ");
-//            for (int q = 0; q < resList.get(i).getLiters().size(); q++) {
-//                System.out.print(resList.get(i).getLiters().get(q) + ", ");
-//            }
-//            System.out.println("\n");
+        //проверка сортировки и не конфликтных литер
+//        for (Pair pair : pairsList) {
+//            calc.checkFreeFrequencies(pair);
+//            System.out.println("Значение не конфлиткной литеры для первой РЭС из пары:  " + pair.getFirstRes().getNoConflictLiter());
+//            System.out.println("Значение не конфлиткной литеры для второй РЭС из пары:  "+pair.getSecondRes().getNoConflictLiter());
+//            System.out.println(pair+" Rating: "+pair.getPairRating());
 //        }
-
-
     }
 }

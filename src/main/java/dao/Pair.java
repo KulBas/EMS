@@ -15,6 +15,25 @@ public class Pair {
     private Double pairRating; //�������� ��������� - �����������
     private CHTR CHTR; //<difFrequency(recommended),criticalDistance(recommended)>
     private  Double criticalFrequency;//����������� ������ f ��� ����������� ������������� ��������
+    private Double firstNoConflictLiter;
+    private Double secondNoConflictLiter;
+
+    public Double getFirstNoConflictLiter() {
+        return firstNoConflictLiter;
+    }
+
+    public void setFirstNoConflictLiter(Double firstNoConflictLiter) {
+        this.firstNoConflictLiter = firstNoConflictLiter;
+    }
+
+    public Double getSecondNoConflictLiter() {
+        return secondNoConflictLiter;
+    }
+
+    public void setSecondNoConflictLiter(Double secondNoConflictLiter) {
+        this.secondNoConflictLiter = secondNoConflictLiter;
+    }
+
     public Double getCriticalFrequency() {
         return criticalFrequency;
     }

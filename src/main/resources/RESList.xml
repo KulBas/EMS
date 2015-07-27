@@ -7,7 +7,16 @@
         <coordinateY>24.3</coordinateY>
         <currentFrequency>30.0</currentFrequency>
         <Liters>
-            <liter>31.0</liter>
+            <liter>51.0</liter>
+            <liter>81.0</liter>
+            <liter>71.0</liter>
+            <liter>75.0</liter>
+            <liter>89.0</liter>
+            <liter>97.0</liter>
+            <liter>56.0</liter>
+            <liter>45.0</liter>
+            <liter>34.0</liter>
+
         </Liters>
         <priority>5</priority>
     </RES>
@@ -17,9 +26,15 @@
         <coordinateY>53.7</coordinateY>
         <currentFrequency>15.0</currentFrequency>
         <Liters>
-            <liter>17.2</liter>
+            <liter>27.2</liter>
             <liter>16.2</liter>
             <liter>19.7</liter>
+            <liter>12.2</liter>
+            <liter>26.2</liter>
+            <liter>29.7</liter>
+            <liter>37.2</liter>
+            <liter>46.2</liter>
+            <liter>29.7</liter>
         </Liters>
         <priority>2</priority>
     </RES>

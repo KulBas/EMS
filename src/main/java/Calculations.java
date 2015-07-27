@@ -3,6 +3,8 @@ import dao.CHTR.Point;
 import dao.Pair;
 import dao.RES.RES;
 
+import java.util.List;
+
 public class Calculations {
 
 
@@ -84,31 +86,58 @@ public class Calculations {
     /**
      * Составление списка не конфликтных литер
      *
-     * @param pair - пара объектов, для которой находим не конфликтные литеры, сначала
-     *             перебираем относительно первого объекта, потом относительно второго
+     * @param res -
      */
-    public void checkFreeFrequencies(Pair pair) {
-        RES firstRes = pair.getFirstRes();
-        RES secondRes = pair.getSecondRes();
+    public Double checkFreeFrequencies(RES res,List<Pair> pairList) {
+
         Double deltaF;
-        for (Double firstResLiter : firstRes.getLiters()) {
-            deltaF = Math.abs(firstResLiter - secondRes.getCurrentFrequency());
-//            System.out.println("/////////////////////////////////////////");
-//            System.out.println("Критическая частота для пары "+firstRes.getId()+", "+secondRes.getId()+" : "+pair.getCriticalFrequency());
-//            System.out.println("Делта f меду литерами "+firstResLiters+", "+secondRes.getCurrentFrequency()+" : "+deltaF);
-            if (deltaF < pair.getCriticalFrequency()) {
-                pair.setFirstNoConflictLiter(firstResLiter);
-                System.out.println("Для РЭС"+firstRes.getId()+" найдена свободная не конфликтная литера "+pair.getFirstNoConflictLiter());
-                break;
+        Double curNoConflictLiter = null;
+
+            for(Pair curPair: pairList) {
+                Integer id = res.getId();
+                Integer firstId = curPair.getFirstRes().getId();
+                Integer secondId = curPair.getSecondRes().getId();
+                if ((id == firstId) || (id == secondId)) {
+                    Double noConflictLiter = null;
+                   noConflictLiter =  setliter(curNoConflictLiter,checkLiter(id, firstId, secondId, curPair, res));
+                    curNoConflictLiter = noConflictLiter;
+                }
             }
-        }
-        for (Double secondResLiter : secondRes.getLiters()) {
-            deltaF = Math.abs(secondResLiter - firstRes.getCurrentFrequency());
-            if (deltaF < pair.getCriticalFrequency()) {
-                pair.setSecondNoConflictLiter(secondResLiter);
-                System.out.println("Для РЭС" + secondRes.getId() + " найдена свободная не конфликтная литера " + pair.getSecondNoConflictLiter());
-                break;
-            }
-        }
+        return curNoConflictLiter;
     }
+
+    public Double setliter(Double curLiter, Double liter){
+        if((curLiter == null) && (liter != null)){
+            curLiter = liter;
+        }else if(curLiter == liter){
+        }
+        return curLiter;
+    }
+
+    public Double checkLiter(Integer id, Integer firstId, Integer secondId, Pair curPair,RES res){
+        RES firstRes  = curPair.getFirstRes();
+        RES secondRes = curPair.getSecondRes();
+        Double deltaF;
+        Double currentLiter = null;
+        if(id != firstId && id ==secondId){
+            for(Double liter: res.getLiters()) {
+                deltaF = Math.abs(liter - firstRes.getCurrentFrequency());
+                if (deltaF < curPair.getCriticalFrequency()) {
+                    currentLiter = liter;
+                    break;
+                }
+            }
+        }else if ((id != secondId) && (id == firstId)){
+            for(Double liter: res.getLiters()) {
+                deltaF = Math.abs(liter - secondRes.getCurrentFrequency());
+                if (deltaF < curPair.getCriticalFrequency()) {
+                    currentLiter = liter;
+                    break;
+                }
+            }
+        }
+        return currentLiter;
+    }
+
 }
+

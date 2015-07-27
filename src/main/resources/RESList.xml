@@ -26,7 +26,7 @@
         <coordinateY>53.7</coordinateY>
         <currentFrequency>15.0</currentFrequency>
         <Liters>
-            <liter>2.2</liter>
+            <liter>47.2</liter>
             <!--<liter>16.2</liter>-->
             <!--<liter>19.7</liter>-->
             <!--<liter>12.2</liter>-->
@@ -36,7 +36,7 @@
             <!--<liter>46.2</liter>-->
             <!--<liter>29.7</liter>-->
         </Liters>
-        <priority>9</priority>
+        <priority>2</priority>
     </RES>
 
     <RES id="3">
@@ -47,7 +47,18 @@
             <liter>71.2</liter>
             <liter>17.8</liter>
         </Liters>
-        <priority>2</priority>
+        <priority>9</priority>
+    </RES>
+
+    <RES id="4">
+        <coordinateX>67.2</coordinateX>
+        <coordinateY>13.6</coordinateY>
+        <currentFrequency>40.0</currentFrequency>
+        <Liters>
+            <liter>21.2</liter>
+            <liter>77.8</liter>
+        </Liters>
+        <priority>8</priority>
     </RES>
 
 </RESList>

@@ -11,29 +11,35 @@ public class Processing {
     public void process(List<Pair> pairsList) {
         Calculations calc = new Calculations();
 //        for (Pair pair : pairsList) {//для всех пар объектов находим не конфликтные литеры
-//            calc.checkFreeFrequencies(pair);
+    //            calc.checkFreeFrequencies(pair);
 //        }
         List<Pair> regularizedPairList = regularizePairsByRating(pairsList);
 
         for (Pair pair : regularizedPairList) {
-
+            for(Pair diffPair: pairsList){
+                diffPair.setCriticalFrequency(calc.countDifFrequency(diffPair));
+            }
             RES firstRes = pair.getFirstRes();
             RES secondRes = pair.getSecondRes();
             if (pair.getPairRating() <= 0) {
+                Double firstNoConflictLiter = null;
+                Double secondNoConflictLiter = null;
                 //Возможно перестроение по частоте? и т.д.
                 System.out.println("Проверяется конфликтная пара " + firstRes.getId() + " и " + secondRes.getId());
-                calc.checkFreeFrequencies(pair);
                 boolean change = false;
-                Double firstNoConflictLiter = pair.getFirstNoConflictLiter();
-                Double secondNoConflictLiter = pair.getSecondNoConflictLiter();
-                if (firstRes.getPriority() >= secondRes.getPriority()) {
+
+                if (firstRes.getPriority() <= secondRes.getPriority()) {
+                    firstNoConflictLiter = calc.checkFreeFrequencies(firstRes, pairsList);
                     change = changeCurrentFrequency(pair, firstRes,firstNoConflictLiter);
                     if (!change) {
+                        secondNoConflictLiter = calc.checkFreeFrequencies(secondRes, pairsList);
                         change = changeCurrentFrequency(pair, secondRes,secondNoConflictLiter);
                     }
-                } else if (secondRes.getPriority() > firstRes.getPriority()) {
+                } else if (secondRes.getPriority() < firstRes.getPriority()) {
+                    secondNoConflictLiter = calc.checkFreeFrequencies(secondRes, pairsList);
                      change = changeCurrentFrequency(pair, secondRes,secondNoConflictLiter);
                     if (!change) {
+                        firstNoConflictLiter = calc.checkFreeFrequencies(firstRes, pairsList);
                         change = changeCurrentFrequency(pair, firstRes,firstNoConflictLiter);
                     }
                 }
@@ -134,5 +140,7 @@ public class Processing {
         });
         return pairsList;
     }
+
+
 
 }
